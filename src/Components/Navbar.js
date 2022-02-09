@@ -1,12 +1,23 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { Navbar, Nav, Button } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 function Navigator() {
+  const { user, logout } = useUserAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   let location = useLocation();
   const ignorePaths = ["/login", "/signup"];
-
-  console.log(location.pathname);
   if (!ignorePaths.includes(location.pathname)) {
     return (
       <div>
@@ -17,7 +28,15 @@ function Navigator() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className='d-flex ' id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <Nav.Link href='/login'>Login</Nav.Link>
+              {user ? (
+                location.pathname === "/dashboard" ? (
+                  <Button onClick={handleLogout}>Logout</Button>
+                ) : (
+                  <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
+                )
+              ) : (
+                <Nav.Link href='/login'>Login</Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

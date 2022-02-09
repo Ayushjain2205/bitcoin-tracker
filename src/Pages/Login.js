@@ -1,25 +1,60 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import GoogleButton from "react-google-button";
-import { Link } from "react-router-dom";
-import Navigator from "../Components/Navbar";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { login, googleLogIn } = useUserAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await login(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleGoogleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await googleLogIn();
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div>
-      <Navigator />
       <Container className='form-holder'>
         <Row style={{ width: "400px" }}>
           <Col>
             <div className='p-4 border'>
               <h2 className='mb-3'>Login!</h2>
-              <Form>
+              {error && <Alert variant='danger'>{error}</Alert>}
+              <Form onSubmit={handleLogin}>
                 <Form.Group className='mb-3' controlId='formBasicEmail'>
-                  <Form.Control type='email' placeholder='Email address' />
+                  <Form.Control
+                    type='email'
+                    placeholder='Email address'
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group className='mb-3' controlId='formBasicPassword'>
-                  <Form.Control type='password' placeholder='Password' />
+                  <Form.Control
+                    type='password'
+                    placeholder='Password'
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
 
                 <div className='d-grid gap-3'>
@@ -31,7 +66,7 @@ function Login() {
               <hr />
 
               <div className='mt-3'>
-                <GoogleButton className='g-btn' />
+                <GoogleButton onClick={handleGoogleLogin} className='g-btn' />
               </div>
             </div>
             <div className='p-4 border mt-3 text-center'>
