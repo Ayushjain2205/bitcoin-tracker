@@ -8,13 +8,19 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { createUserDocument } from "../services/userService";
 
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState("");
-  function signUp(email, password) {
-    return createUserWithEmailAndPassword(auth, email, password);
+  async function signUp(email, password) {
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await createUserDocument(user);
   }
 
   function login(email, password) {
@@ -25,9 +31,10 @@ export function UserAuthContextProvider({ children }) {
     return signOut(auth);
   }
 
-  function googleLogIn() {
+  async function googleLogIn() {
     const googleAuthProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleAuthProvider);
+    const { user } = await signInWithPopup(auth, googleAuthProvider);
+    await createUserDocument(user);
   }
 
   useEffect(() => {
