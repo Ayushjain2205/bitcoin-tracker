@@ -18,3 +18,37 @@
   width: 40px !important;
   height: 38px !important;
 }
+
+/* Bitcoin component */
+.bitcoin-price {
+  width: 400px;
+  background: #1a294d;
+  color: #fff;
+  border-radius: 20px;
+  border: 5px solid #f9941b;
+  margin: 50px;
+}
+
+.fa-bitcoin {
+  color: #f9941b;
+}
+
+.bitcoin-icon {
+  background: #fff;
+  border-radius: 50%;
+}
+
+.top-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
