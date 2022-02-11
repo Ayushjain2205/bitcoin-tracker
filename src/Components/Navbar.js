@@ -23,14 +23,19 @@ function Navigator() {
       <div>
         <Navbar bg='light' variant='light' expand='lg' sticky='top'>
           <Navbar.Brand href='#home'>
-            <Nav.Link href='/'>Bitcoin</Nav.Link>
+            <Nav.Link href='/'>
+              <i class='fa-brands fa-bitcoin '></i>
+              <span className='logo'> Bitcoin</span>
+            </Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse className=' ' id='basic-navbar-nav'>
             <Nav className='ml-auto'>
               {user ? (
                 location.pathname === "/dashboard" ? (
-                  <span onClick={handleLogout}>Logout</span>
+                  <span className='logout' onClick={handleLogout}>
+                    Logout
+                  </span>
                 ) : (
                   <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
                 )

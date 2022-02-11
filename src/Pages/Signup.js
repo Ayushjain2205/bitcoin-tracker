@@ -23,11 +23,16 @@ function Signup() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage:
+          'url("https://image.freepik.com/free-vector/line-cryptocurrency-white-seamless-pattern-vector-illustration-outline-tile-background-bitcoin-financial-items_520826-1847.jpg")',
+      }}
+    >
       <Container className='form-holder'>
-        <Row style={{ width: "400px" }}>
+        <Row style={{ width: "400px", backgroundColor: "white" }}>
           <Col>
-            <div className='p-4 border'>
+            <div className='p-4 m-4 border'>
               <h2 className='mb-3'>Sign up!</h2>
               {error && <Alert variant='danger'>{error}</Alert>}
               <Form onSubmit={handleSignup}>
@@ -55,7 +60,7 @@ function Signup() {
               </Form>
             </div>
 
-            <div className='p-4 border mt-3 text-center'>
+            <div className='p-4 border m-4  text-center'>
               Already have an account? <Link to='/login'>Log In</Link>
             </div>
           </Col>

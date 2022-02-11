@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap");
+
 .form-holder {
   display: flex;
   justify-content: center;
@@ -20,6 +22,19 @@
 
 .navbar-nav {
   padding-left: 20px !important;
+}
+
+.logo {
+  font-family: "Black Ops One", cursive;
+  color: #4d4d4d;
+}
+
+.banner-image {
+  width: 80%;
+}
+
+.logout {
+  cursor: pointer;
 }
 
 /* Styling for Google SSO button */
@@ -72,4 +87,24 @@
 /* Chart component */
 .chart-holder {
   width: 100%;
+}
+
+/* Landing page */
+.landing-banner {
+  padding: 20px;
+}
+
+.landing-page {
+  height: 95vh;
+  background-image: url("https://i.postimg.cc/6Q6NsPSF/cd920f0b05b3ef38fea8ce40e61c63c3.jpg");
+}
+
+.banner-holder {
+  background: #fff;
+  border-radius: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
