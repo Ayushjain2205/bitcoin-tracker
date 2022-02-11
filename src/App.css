@@ -6,6 +6,22 @@
   height: 100vh;
 }
 
+.component-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.welcome-message {
+  padding: 20px;
+}
+
+.navbar-nav {
+  padding-left: 20px !important;
+}
+
 /* Styling for Google SSO button */
 .g-btn {
   width: 100% !important;
@@ -21,7 +37,7 @@
 
 /* Bitcoin component */
 .bitcoin-price {
-  width: 400px;
+  width: 100%;
   background: #1a294d;
   color: #fff;
   border-radius: 20px;
@@ -51,4 +67,9 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+
+/* Chart component */
+.chart-holder {
+  width: 100%;
 }

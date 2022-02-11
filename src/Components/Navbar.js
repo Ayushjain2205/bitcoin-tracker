@@ -26,11 +26,11 @@ function Navigator() {
             <Nav.Link href='/'>Bitcoin</Nav.Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse className='d-flex ' id='basic-navbar-nav'>
+          <Navbar.Collapse className=' ' id='basic-navbar-nav'>
             <Nav className='ml-auto'>
               {user ? (
                 location.pathname === "/dashboard" ? (
-                  <Button onClick={handleLogout}>Logout</Button>
+                  <span onClick={handleLogout}>Logout</span>
                 ) : (
                   <Nav.Link href='/dashboard'>Dashboard</Nav.Link>
                 )
